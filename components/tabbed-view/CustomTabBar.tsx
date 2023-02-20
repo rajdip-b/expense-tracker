@@ -40,7 +40,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
                 };
 
                 return (
-                    <View key={index} className={`bg-gray-200 flex-1 shadow-2xl border-t border-t-gray-300`}>
+                    <View key={index} className={`bg-[#F9F8F9] flex-1 shadow-2xl border-t border-t-gray-300`}>
                         <TouchableOpacity
                             className={`m-3 p-2 rounded-lg flex flex-col items-center justify-between`}
                             onPress={onPress}

@@ -6,7 +6,7 @@ const ActionButton = () => {
     return (
         <Pressable
             className={
-                'flex items-center justify-center rounded-full bg-black w-[30px] h-[30px] absolute fixed-top right-[15px] top-[15px]'
+                'flex items-center justify-center rounded-full bg-[#191A2C] w-[35px] h-[35px] absolute fixed-top right-[15px] top-[15px]'
             }
         >
             <Ionicons name="md-add" size={25} color="white" />

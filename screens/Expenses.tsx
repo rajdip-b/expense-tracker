@@ -1,12 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import ActionButton from '../components/expenses/ActionButton';
+import { View } from 'react-native';
+import { ActionButton, AllExpenseList, TotalExpenseView } from '../components/expenses';
 
 const Expenses = () => {
     return (
-        <View>
+        <View className="bg-white h-[100%] ">
             <ActionButton />
-            <Text>Hello!</Text>
+            <TotalExpenseView value={2010.4} />
+            <AllExpenseList />
         </View>
     );
 };
