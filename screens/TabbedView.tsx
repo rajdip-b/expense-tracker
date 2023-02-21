@@ -1,15 +1,16 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { ITabbedView } from '../index';
+import { IRootStackParamList, ITabbedView } from '../types';
 import React from 'react';
 import CustomTabBar from '../components/tabbed-view/CustomTabBar';
 import Expenses from './Expenses';
 import Statistics from './Statistics';
 import Settings from './Settings';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const Tab = createBottomTabNavigator<ITabbedView>();
 
-const TabbedView = () => {
+const TabbedView: React.FC<{ navigation: NativeStackNavigationProp<IRootStackParamList> }> = ({ navigation }) => {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -28,7 +29,7 @@ const TabbedView = () => {
                         ),
                 }}
                 name="Expenses"
-                component={Expenses}
+                children={() => <Expenses navigation={navigation} />}
             />
             <Tab.Screen
                 options={{

@@ -1,23 +1,22 @@
-export enum ExpenseType {
-    FOOD = 'Food',
-    TRAVEL = 'Travel',
-    ELECTRONICS = 'Electronics',
-    STUDY = 'Study',
-    UTILITIES = 'Utilities',
-    ENTERTAINMENT = 'Entertainment',
-    OTHER = 'Other',
-}
+export type TExpenseCategory = string;
 
 export interface IExpenditure {
     id: number;
-    amount: number;
-    type: ExpenseType;
-    date: Date;
-    description: string;
+    amount: string;
+    category: TExpenseCategory;
+    date: string;
+    note: string;
 }
+
+export type IExpenditureForm = Pick<IExpenditure, 'amount' | 'category' | 'date' | 'note'>;
 
 export interface IAppSliceInitialState {
     expenditures: IExpenditure[];
+    expenseCategories: TExpenseCategory[];
+}
+
+export interface IStoreState {
+    app: IAppSliceInitialState;
 }
 
 export type IRootStackParamList = {

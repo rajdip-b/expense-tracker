@@ -6,7 +6,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './store/store';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AddExpense from './screens/AddExpense';
-import { IRootStackParamList } from './index';
+import { IRootStackParamList } from './types';
 import TabbedView from './screens/TabbedView';
 
 export default function App() {
@@ -15,7 +15,7 @@ export default function App() {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <NavigationContainer>
-                    <StatusBar barStyle="light-content" backgroundColor={'white'}/>
+                    <StatusBar barStyle="light-content" backgroundColor={'white'} />
                     <RootStack />
                 </NavigationContainer>
             </PersistGate>
@@ -30,7 +30,10 @@ const RootStack: React.FC = () => {
             <>
                 <Stack.Screen options={{ headerShown: false }} name="TabbedView" component={TabbedView} />
                 <Stack.Screen
-                    options={{ headerShown: false, animation: 'slide_from_bottom' }}
+                    options={{
+                        animation: 'slide_from_bottom',
+                        headerTitle: 'Add Expense',
+                    }}
                     name="AddExpense"
                     component={AddExpense}
                 />

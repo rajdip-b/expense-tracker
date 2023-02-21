@@ -2,11 +2,6 @@ import { appReducer } from './app-slice';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { IAppSliceInitialState } from '../index';
-
-export interface StoreStateType {
-    app: IAppSliceInitialState;
-}
 
 const rootPersistConfig = {
     key: 'expense-tracker-root',
