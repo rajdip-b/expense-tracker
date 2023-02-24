@@ -8,6 +8,14 @@ export interface IExpenditure {
     note: string;
 }
 
+export interface IExpenseDisplay {
+    title: {
+        date: string;
+        spent: number;
+    };
+    data: IExpenditure[];
+}
+
 export type IExpenditureForm = Pick<IExpenditure, 'amount' | 'category' | 'date' | 'note'>;
 
 export interface IAppSliceInitialState {

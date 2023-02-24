@@ -1,17 +1,26 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { IStoreState } from '../../types';
 
 const TotalExpenseView = () => {
     const splitValueToParts = (value: number) => {
         const parts = value.toString().split('.');
-
-        return {
-            rupee: parts[0],
-            paise: parts[1] + '0',
-        };
+        if (parts.length == 1)
+            return {
+                rupee: parts[0],
+                paise: '00',
+            };
+        else
+            return {
+                rupee: parts[0],
+                paise: parseInt(parts[1]) < 10 ? parts[1] + '0' : parts[1],
+            };
     };
 
-    const { rupee, paise } = splitValueToParts(200.5);
+    const { rupee, paise } = splitValueToParts(
+        useSelector((state: IStoreState) => state.app.expenditures.reduce((acc, curr) => acc + +curr.amount, 0)),
+    );
 
     return (
         <View className="py-[80px] flex justify-center items-center ">
