@@ -8,6 +8,25 @@ export interface IExpenditure {
     note: string;
 }
 
+export enum Interval {
+    WEEK = 'Week',
+    MONTH = 'Month',
+    YEAR = 'Year',
+}
+
+export interface IExpenditureStats {
+    amount: number;
+    prevIntervalExpenditurePercentage: number;
+    isExpenditureThisIntervalLessThanPrev: boolean;
+    interval: Interval;
+    category: {
+        name: TExpenseCategory;
+        entries: number;
+        totalExpenditure: number;
+        expenditureInInterval: number;
+    }[];
+}
+
 export interface IExpenseDisplay {
     title: {
         date: string;

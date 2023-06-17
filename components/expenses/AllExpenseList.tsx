@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, SectionList } from 'react-native';
+import { SafeAreaView, SectionList, Text } from 'react-native';
 import ExpenseCard from './components-AllExpenseList/ExpenseCard';
 import Header from './components-AllExpenseList/Header';
 import { useSelector } from 'react-redux';
@@ -60,14 +60,16 @@ const AllExpenseList = () => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <SectionList
-                bounces={true}
-                stickySectionHeadersEnabled={true}
-                sections={expensesDisplay}
-                renderItem={({ item }) => <ExpenseCard expense={item} />}
-                renderSectionHeader={({ section }) => <Header data={section.title} />}
-                keyExtractor={item => `basicListEntry-${item.id}`}
-            />
+            {expensesDisplay.length !== 0 ? (
+                <SectionList
+                    sections={expensesDisplay}
+                    renderItem={({ item }) => <ExpenseCard expense={item} />}
+                    renderSectionHeader={({ section }) => <Header data={section.title} />}
+                    keyExtractor={item => `basicListEntry-${item.id}`}
+                />
+            ) : (
+                <Text className="text-center text-gray-500 text-xl mt-10">No expenses yet</Text>
+            )}
         </SafeAreaView>
     );
 };

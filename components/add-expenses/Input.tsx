@@ -3,6 +3,7 @@ import CustomView from '../common/CustomView';
 import { Pressable, Text, TextInput } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
 
 type Props = {
     style?: any;
@@ -48,7 +49,7 @@ const Input: React.FC<Props> = props => {
                     autoCorrect={true}
                     style={{ textAlignVertical: 'top' }}
                     autoFocus={props.name === 'amount'}
-                    value={props.value}
+                    value={props.type == 'date' ? moment(new Date()).format('MMMM Do, h:mm a') : props.value}
                     editable={props.type !== 'date'}
                     placeholder={props.placeholder}
                     onChangeText={text => props.onChange(text, props.name)}

@@ -3,9 +3,20 @@ import { Alert, Pressable, Text, ToastAndroid, View } from 'react-native';
 import { IExpenditure } from '../../../types';
 import { useDispatch } from 'react-redux';
 import { appActions } from '../../../store/app-slice';
+import moment from 'moment';
 
 type Props = {
     expense: IExpenditure;
+};
+
+const isInWeek = (date: string) => {
+    const difference = (new Date().getTime() - new Date(date).getTime()) / (1000 * 3600 * 24);
+    return difference < 7;
+};
+
+const isToday = (date: string) => {
+    const difference = (new Date().getTime() - new Date(date).getTime()) / (1000 * 3600 * 24);
+    return difference < 1;
 };
 
 const ExpenseCard: React.FC<Props> = ({ expense }) => {
@@ -44,7 +55,13 @@ const ExpenseCard: React.FC<Props> = ({ expense }) => {
                 <Text className="text-xl">{expense.category}</Text>
                 <Text className="text-xl">₹ {expense.amount}</Text>
             </View>
-            <Text className="text-textGrey text-base">{expense.date}</Text>
+            <Text className="text-textGrey text-base">
+                {isInWeek(expense.date)
+                    ? isToday(expense.date)
+                        ? moment(expense.date).format('hh:mm A')
+                        : moment(expense.date).format('dddd Do, hh:mm A')
+                    : moment(expense.date).format('MMMM do')}
+            </Text>
         </Pressable>
     );
 };

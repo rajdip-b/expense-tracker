@@ -1,5 +1,5 @@
 import React from 'react';
-import { IExpenditure, IExpenditureForm, IStoreState, TExpenseCategory } from '../types';
+import { IExpenditure, IExpenditureForm, IRootStackParamList, IStoreState, TExpenseCategory } from '../types';
 import CustomView from '../components/common/CustomView';
 import { useDispatch, useSelector } from 'react-redux';
 import Input from '../components/add-expenses/Input';
@@ -8,15 +8,16 @@ import CustomPressable from '../components/common/CustomPressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Text, ToastAndroid } from 'react-native';
 import { appActions } from '../store/app-slice';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-const AddExpense = () => {
+const AddExpense: React.FC<{ navigation: NativeStackNavigationProp<IRootStackParamList> }> = ({ navigation }) => {
     const dispatch = useDispatch();
     const storedExpenseCategories = useSelector((state: IStoreState) => state.app.expenseCategories);
 
     const [form, setForm] = React.useState<IExpenditureForm>({
         amount: '',
         category: '',
-        date: new Date().toDateString(),
+        date: new Date().toISOString(),
         note: '',
     });
     const [category, setCategory] = React.useState('');
@@ -45,12 +46,14 @@ const AddExpense = () => {
     const handleAddExpense = React.useCallback(() => {
         if (form.amount === '') return ToastAndroid.show('Please enter an amount', ToastAndroid.LONG);
         if (form.category === '') return ToastAndroid.show('Please select a category', ToastAndroid.LONG);
+        setForm(prev => ({ ...prev, amount: parseFloat(prev.amount).toFixed(2) }));
         const expenditure: IExpenditure = {
             id: Math.random(),
             ...form,
         };
         dispatch(appActions.addExpenditure(expenditure));
         ToastAndroid.show('Expense added successfully', ToastAndroid.LONG);
+        navigation.goBack();
     }, [form]);
 
     const handleRemoveCategory = React.useCallback((category: TExpenseCategory) => {

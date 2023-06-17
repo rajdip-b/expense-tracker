@@ -19,7 +19,11 @@ const TotalExpenseView = () => {
     };
 
     const { rupee, paise } = splitValueToParts(
-        useSelector((state: IStoreState) => state.app.expenditures.reduce((acc, curr) => acc + +curr.amount, 0)),
+        useSelector((state: IStoreState) =>
+            state.app.expenditures
+                .filter(e => (new Date().getTime() - new Date(e.date).getTime()) / (1000 * 3600 * 24) < 7)
+                .reduce((acc, curr) => acc + +curr.amount, 0),
+        ),
     );
 
     return (
