@@ -1,9 +1,10 @@
 import React from 'react';
-import { Alert, Pressable, Text, ToastAndroid, View } from 'react-native';
+import { Alert, Text, ToastAndroid, View } from 'react-native';
 import { IExpenditure } from '../../../types';
 import { useDispatch } from 'react-redux';
 import { appActions } from '../../../store/app-slice';
 import moment from 'moment';
+import CustomPressable from '../../common/CustomPressable';
 
 type Props = {
     expense: IExpenditure;
@@ -46,23 +47,26 @@ const ExpenseCard: React.FC<Props> = ({ expense }) => {
     }, []);
 
     return (
-        <Pressable
+        <CustomPressable
             onPress={handleOnPress}
             onLongPress={handleOnLongPress}
-            className="py-1 border-b-[0.5px] border-b-gray-300"
+            className='py-1 border-b-[0.5px] border-b-gray-300'
         >
-            <View className="flex flex-row justify-between">
-                <Text className="text-xl">{expense.category}</Text>
-                <Text className="text-xl">₹ {expense.amount}</Text>
+            <View className='flex flex-row justify-between'>
+                <Text className='text-lg'>{expense.note}</Text>
+                <Text className='text-lg'>₹ {expense.amount}</Text>
             </View>
-            <Text className="text-textGrey text-base">
-                {isInWeek(expense.date)
-                    ? isToday(expense.date)
-                        ? moment(expense.date).format('hh:mm A')
-                        : moment(expense.date).format('dddd Do, hh:mm A')
-                    : moment(expense.date).format('MMMM do')}
-            </Text>
-        </Pressable>
+            <View className={'flex flex-row justify-between'}>
+                <Text className='text-textGrey'>{expense.category}</Text>
+                <Text className='text-textGrey'>
+                    {isInWeek(expense.date)
+                        ? isToday(expense.date)
+                            ? moment(expense.date).format('hh:mm A')
+                            : moment(expense.date).format('dddd Do, hh:mm A')
+                        : moment(expense.date).format('MMMM do')}
+                </Text>
+            </View>
+        </CustomPressable>
     );
 };
 

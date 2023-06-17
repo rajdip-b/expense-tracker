@@ -19,12 +19,14 @@ export interface IExpenditureStats {
     prevIntervalExpenditurePercentage: number;
     isExpenditureThisIntervalLessThanPrev: boolean;
     interval: Interval;
-    category: {
-        name: TExpenseCategory;
-        entries: number;
-        totalExpenditure: number;
-        expenditureInInterval: number;
-    }[];
+    category: IExpenditureCategory[];
+}
+
+export interface IExpenditureCategory {
+    name: TExpenseCategory;
+    entries: number;
+    totalExpenditure: number;
+    expenditureInInterval: number;
 }
 
 export interface IExpenseDisplay {

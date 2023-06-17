@@ -13,7 +13,7 @@ type Props = {
 const ExpenseInInterval: React.FC<Props> = props => {
     return (
         <View>
-            <Text className={'text-4xl font-bold'}>₹ {props.amount}</Text>
+            <Text className={'text-4xl font-bold'}>₹ {Number(props.amount).toFixed(2)}</Text>
             <View className={'flex flex-row items-center gap-x-2'}>
                 <Text className={'text'}>Total spent previous {props.interval.toString().toLowerCase()}</Text>
                 <View className={'flex-row items-center gap-x-1'}>

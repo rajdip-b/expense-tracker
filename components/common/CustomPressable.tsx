@@ -6,11 +6,13 @@ type Props = {
     className?: string;
     children?: React.ReactNode;
     onPress?: () => void;
+    onLongPress?: () => void;
 };
 
 const CustomPressable: React.FC<Props> = props => {
     return (
-        <Pressable style={props.style} className={props.className} onPress={props.onPress}>
+        <Pressable onLongPress={props.onLongPress} style={props.style} className={props.className}
+                   onPress={props.onPress}>
             {props.children}
         </Pressable>
     );
