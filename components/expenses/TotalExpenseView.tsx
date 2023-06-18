@@ -27,12 +27,27 @@ const TotalExpenseView = () => {
     );
 
     return (
-        <View className="py-[80px] flex justify-center items-center ">
-            <Text className="text-lg text-textGrey m-3 font-medium">Spent this week</Text>
-            <View className="flex flex-row">
-                <Text className="text-4xl text-textGrey">₹</Text>
-                <Text className="text-7xl text-black ">{rupee.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Text>
-                <Text className="text-4xl text-black ">.{paise}</Text>
+        <View
+            className='py-[30px] flex justify-center items-center bg-gradient-to-br from-darkBlue via-darkPurple to-lightBrown'>
+            <Text className='text-lg text-gray-500 m-3 font-medium' style={{
+                fontFamily: 'Poppins-Medium',
+            }}>Spent this week</Text>
+            <View className='flex flex-row items-start'>
+                <Text className='text-gray-600' style={{
+                    fontFamily: 'Poppins-SemiBold',
+                    fontSize: 30,
+                    paddingTop: 13,
+                }}>₹</Text>
+                <Text className='text-sky-700'
+                      style={{
+                          fontFamily: 'Poppins-SemiBold',
+                          fontSize: 60,
+                      }}>{rupee.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Text>
+                <Text className='text-sky-700' style={{
+                    fontFamily: 'Poppins-SemiBold',
+                    fontSize: 35,
+                    paddingTop: 10,
+                }}>.{paise}</Text>
             </View>
         </View>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { IExpenditureCategory } from '../../types';
-import { FlatList, ScrollView } from 'react-native';
+import { FlatList } from 'react-native';
 import CategoryItem from './CategoryItem';
 
 type Props = {
@@ -11,12 +11,10 @@ const CategoryWiseExpense: React.FC<Props> = ({ categories }) => {
     console.log(categories);
 
     return (
-        <ScrollView>
-            <FlatList
-                data={categories}
-                renderItem={({ item }) => <CategoryItem category={item} />}
-            />
-        </ScrollView>
+        <FlatList
+            data={categories}
+            renderItem={({ item }) => <CategoryItem category={item} />}
+        />
     );
 };
 

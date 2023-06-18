@@ -24,51 +24,52 @@ const AllExpenseList = () => {
             else expensesToday.push(expense);
         });
         expensesToday.length !== 0 &&
-            setExpensesDisplay(prev => [
-                ...prev,
-                {
-                    title: {
-                        date: 'Today',
-                        spent: expensesToday.reduce((acc, curr) => acc + +curr.amount, 0),
-                    },
-                    data: expensesToday,
+        setExpensesDisplay(prev => [
+            ...prev,
+            {
+                title: {
+                    date: 'Today',
+                    spent: expensesToday.reduce((acc, curr) => acc + +curr.amount, 0),
                 },
-            ]);
+                data: expensesToday,
+            },
+        ]);
         expensesYesterday.length !== 0 &&
-            setExpensesDisplay(prev => [
-                ...prev,
-                {
-                    title: {
-                        date: 'Yesterday',
-                        spent: expensesYesterday.reduce((acc, curr) => acc + +curr.amount, 0),
-                    },
-                    data: expensesYesterday,
+        setExpensesDisplay(prev => [
+            ...prev,
+            {
+                title: {
+                    date: 'Yesterday',
+                    spent: expensesYesterday.reduce((acc, curr) => acc + +curr.amount, 0),
                 },
-            ]);
+                data: expensesYesterday,
+            },
+        ]);
         expensesRest.length !== 0 &&
-            setExpensesDisplay(prev => [
-                ...prev,
-                {
-                    title: {
-                        date: 'Earlier',
-                        spent: expensesRest.reduce((acc, curr) => acc + +curr.amount, 0),
-                    },
-                    data: expensesRest,
+        setExpensesDisplay(prev => [
+            ...prev,
+            {
+                title: {
+                    date: 'Earlier',
+                    spent: expensesRest.reduce((acc, curr) => acc + +curr.amount, 0),
                 },
-            ]);
+                data: expensesRest,
+            },
+        ]);
     }, [expenses]);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             {expensesDisplay.length !== 0 ? (
                 <SectionList
+                    className={'px-5'}
                     sections={expensesDisplay}
                     renderItem={({ item }) => <ExpenseCard expense={item} />}
                     renderSectionHeader={({ section }) => <Header data={section.title} />}
                     keyExtractor={item => `basicListEntry-${item.id}`}
                 />
             ) : (
-                <Text className="text-center text-gray-500 text-xl mt-10">No expenses yet</Text>
+                <Text className='text-center text-gray-500 text-xl mt-10'>No expenses yet</Text>
             )}
         </SafeAreaView>
     );

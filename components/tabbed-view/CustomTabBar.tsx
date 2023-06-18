@@ -22,10 +22,7 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
         <View className={`flex flex-row ${!keyboardHidden && 'hidden'}`}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
-
-                const label = route.name as string;
                 const iconName = options.tabBarIcon;
-
                 const isFocused = state.index === index;
 
                 const onPress = () => {
@@ -40,15 +37,12 @@ const CustomTabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => 
                 };
 
                 return (
-                    <View key={index} className={`bg-[#F9F8F9] flex-1 shadow-2xl border-t border-t-gray-300`}>
+                    <View key={index} className={`bg-transparent flex-1 shadow-2xl rounded-full`}>
                         <TouchableOpacity
-                            className={`m-3 p-2 rounded-lg flex flex-col items-center justify-between`}
+                            className={`m-3 p-2 flex flex-col items-center justify-between`}
                             onPress={onPress}
                         >
                             {iconName && iconName({ color: '', size: 0, focused: isFocused })}
-                            {/*<Text className={'text-sm'} style={{ color: isFocused ? '#BBFF00' : '#222' }}>*/}
-                            {/*    {label}*/}
-                            {/*</Text>*/}
                         </TouchableOpacity>
                     </View>
                 );

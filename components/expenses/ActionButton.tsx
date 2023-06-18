@@ -11,10 +11,10 @@ const ActionButton: React.FC<{ navigation: NativeStackNavigationProp<IRootStackP
         <Pressable
             onPress={handleOnPress}
             className={
-                'flex items-center justify-center rounded-full bg-[#191A2C] w-[35px] h-[35px] absolute fixed-top right-[15px] top-[15px]'
+                'flex items-center justify-center rounded-full bg-green-500 w-[50px] h-[50px] absolute bottom-0 mx-auto'
             }
         >
-            <Ionicons name="md-add" size={25} color="white" />
+            <Ionicons name='md-add' size={25} color='white' />
         </Pressable>
     );
 };

@@ -50,15 +50,17 @@ const ExpenseCard: React.FC<Props> = ({ expense }) => {
         <CustomPressable
             onPress={handleOnPress}
             onLongPress={handleOnLongPress}
-            className='py-1 border-b-[0.5px] border-b-gray-300'
+            className='bg-gray-100 rounded-2xl py-2 px-4 mb-3'
         >
             <View className='flex flex-row justify-between'>
-                <Text className='text-lg'>{expense.note}</Text>
-                <Text className='text-lg'>₹ {expense.amount}</Text>
+                <Text className='text-lg text-slate-700'
+                      style={{ fontFamily: 'Poppins-SemiBold' }}>{expense.note}</Text>
+                <Text className='text-lg text-rose-400'
+                      style={{ fontFamily: 'Poppins-SemiBold' }}>₹ {expense.amount}</Text>
             </View>
             <View className={'flex flex-row justify-between'}>
-                <Text className='text-textGrey'>{expense.category}</Text>
-                <Text className='text-textGrey'>
+                <Text className='text-textGrey' style={{ fontFamily: 'Poppins-Medium' }}>{expense.category}</Text>
+                <Text className='text-textGrey' style={{ fontFamily: 'Poppins-Medium' }}>
                     {isInWeek(expense.date)
                         ? isToday(expense.date)
                             ? moment(expense.date).format('hh:mm A')

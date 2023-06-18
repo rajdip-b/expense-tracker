@@ -5,13 +5,14 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                lightGray: '#bfbfbf',
-                darkGray: '#57565E',
-                black: '#191A2D',
+                lightGray: '#ede9f0',
+                lightBrown: '#f6b1a2',
+                lightPurple: '#c6b6fb',
+                mediumPurple: '#b8aaf8',
+                teal: '#9cadbf',
+                darkPurple: '#a84d92',
+                darkBlue: '#3c48d7',
                 brown: '#4B3430',
-                lightGreen: '#ADCCB6',
-                darkGreen: '#7D8A5F',
-                textGrey: '#8F8D95'
             },
         },
     },
